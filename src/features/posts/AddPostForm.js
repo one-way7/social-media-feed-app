@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useDispatch } from "react-redux";
 
 const AddPostForm = () => {
     const [title, setTitle] = useState('')
@@ -23,9 +24,14 @@ const AddPostForm = () => {
                 <textarea
                     name="postContent"
                     id="postContent"
+                    style={{
+                        resize: 'none',
+                        height: '150px'
+                    }}
                     value={content}
                     onInput={onContentChanged}
                 />
+                <button type="button">Save Post</button>
             </form>
         </section>
     )
