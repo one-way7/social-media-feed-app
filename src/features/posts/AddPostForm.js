@@ -1,30 +1,25 @@
-import React, {useState} from 'react'
-import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { postAdded } from "./postsSlice";
+import { postAdded } from './postsSlice';
 
 const AddPostForm = () => {
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
 
     const dispatch = useDispatch();
 
-    const onTitleChanged = (e) => setTitle(e.target.value)
-    const onContentChanged = (e) => setContent(e.target.value)
+    const onTitleChanged = e => setTitle(e.target.value);
+    const onContentChanged = e => setContent(e.target.value);
 
     const onSavePostClicked = () => {
         if (title && content) {
-            dispatch(postAdded({
-                id: nanoid(),
-                title,
-                content
-            }))
+            dispatch(postAdded(title, content));
 
-            setTitle('')
-            setContent('')
+            setTitle('');
+            setContent('');
         }
-    }
+    };
 
     return (
         <section>
@@ -44,7 +39,7 @@ const AddPostForm = () => {
                     id="postContent"
                     style={{
                         resize: 'none',
-                        height: '150px'
+                        height: '150px',
                     }}
                     value={content}
                     onInput={onContentChanged}
@@ -54,7 +49,7 @@ const AddPostForm = () => {
                 </button>
             </form>
         </section>
-    )
-}
+    );
+};
 
-export default AddPostForm
+export default AddPostForm;
